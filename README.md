@@ -1,2 +1,2 @@
-Illeminate
+Illiminate
 Author: Brady Ancell
