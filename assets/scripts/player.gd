@@ -37,5 +37,4 @@ func _physics_process(delta):
 	print(velocity.x)
 	print(velocity.y)
 	
-	#warning-ignore:return_value_discarded
-	position += velocity * delta
+	move_and_slide()
