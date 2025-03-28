@@ -9,6 +9,8 @@ func _physics_process(delta):
 	motion.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	motion.y /= 2
 	
+	
+	# update animation
 	if (motion.x > 0):
 		if (motion.y > 0):
 			$AnimatedSprite2D.play("walking_down_right")
@@ -34,7 +36,7 @@ func _physics_process(delta):
 			
 	velocity = motion.normalized() * MOTION_SPEED
 	
-	print(velocity.x)
-	print(velocity.y)
+	#print(velocity.x)
+	#print(velocity.y)
 	
 	move_and_slide()
