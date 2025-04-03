@@ -275,14 +275,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s027a"]
-radius = 11.0
-height = 36.0
+height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 script = ExtResource("1_s027a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
 position = Vector2(11, -14)
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_rwm0n")
@@ -291,5 +291,6 @@ autoplay = "idle"
 frame_progress = 0.914959
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, -9)
+z_index = 5
+position = Vector2(11, 0)
 shape = SubResource("CapsuleShape2D_s027a")

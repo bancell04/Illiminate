@@ -23,12 +23,23 @@ tile_map_data = PackedByteArray("AAAsABAAAAAFAAUAAAAhABkAAAAFAAUAAAAzAAoAAAAFAAU
 tile_set = ExtResource("1_5gf0t")
 
 [node name="Building1" parent="." instance=ExtResource("3_cb5na")]
+z_index = 5
 position = Vector2(-606, -10)
 
 [node name="Player" parent="." instance=ExtResource("2_dis88")]
-z_index = 0
+z_index = 1
 position = Vector2(77, 352)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(11, -10)
+scale = Vector2(5.64, 9.04)
 position_smoothing_enabled = true
+
+[node name="Overlay" type="ColorRect" parent="Player/Camera2D"]
+visible = false
+z_index = 1
+offset_left = -171.0
+offset_top = -60.0
+offset_right = 178.0
+offset_bottom = 65.0
+color = Color(0, 0, 0, 1)
