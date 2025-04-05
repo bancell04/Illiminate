@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://dyhrhdg04wky6"]
+[gd_scene load_steps=42 format=3 uid="uid://dyhrhdg04wky6"]
 
 [ext_resource type="Texture2D" uid="uid://bdxhd8467wdcx" path="res://assets/sprites/characters_spritesheet.png" id="1_rwm0n"]
 [ext_resource type="Script" uid="uid://w5hhl6g6comc" path="res://assets/scripts/player.gd" id="1_s027a"]
+[ext_resource type="Texture2D" uid="uid://csqfyxpa8wp5c" path="res://assets/sprites/spaceman.png" id="3_14505"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s027a"]
 atlas = ExtResource("1_rwm0n")
@@ -277,20 +278,63 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s027a"]
 height = 20.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqo28"]
+atlas = ExtResource("3_14505")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eo68"]
+atlas = ExtResource("3_14505")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiote"]
+atlas = ExtResource("3_14505")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5308x"]
+atlas = ExtResource("3_14505")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1hryd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqo28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eo68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiote")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5308x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 script = ExtResource("1_s027a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 5
 position = Vector2(11, -14)
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_rwm0n")
-animation = &"walking_down_right"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.914959
+frame_progress = 0.377193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 5
-position = Vector2(11, 0)
 shape = SubResource("CapsuleShape2D_s027a")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_1hryd")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.956769
