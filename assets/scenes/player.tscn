@@ -321,14 +321,15 @@ script = ExtResource("1_s027a")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = 5
-position = Vector2(11, -14)
+position = Vector2(1, -12)
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_rwm0n")
-animation = &"idle"
+animation = &"walking_down"
 autoplay = "idle"
-frame_progress = 0.377193
+frame_progress = 0.85353
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 5
 shape = SubResource("CapsuleShape2D_s027a")
 
@@ -337,4 +338,5 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_1hryd")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.956769
+frame = 2
+frame_progress = 0.338842
