@@ -13,25 +13,25 @@ func _physics_process(delta):
 	# update animation
 	if (motion.x > 0):
 		if (motion.y > 0):
-			$AnimatedSprite2D.play("walking_down_right")
+			$AnimatedSprite2D.play("walking_southeast")
 		elif (motion.y < 0):
-			$AnimatedSprite2D.play("walking_up_right")
+			$AnimatedSprite2D.play("walking_northeast")
 		elif (motion.y == 0):
-			$AnimatedSprite2D.play("walking_right")
+			$AnimatedSprite2D.play("walking_east")
 	elif (motion.x < 0):
 		if (motion.y > 0):
-			$AnimatedSprite2D.play("walking_down_left")
+			$AnimatedSprite2D.play("walking_southwest")
 		elif (motion.y < 0):
-			$AnimatedSprite2D.play("walking_up_left")
+			$AnimatedSprite2D.play("walking_northwest")
 		elif (motion.y == 0):
-			$AnimatedSprite2D.play("walking_left")
+			$AnimatedSprite2D.play("walking_west")
 	elif (motion.x == 0):
 		if (motion.y > 0):
-			$AnimatedSprite2D.play("walking_down")
+			$AnimatedSprite2D.play("walking_south")
 		elif (motion.y < 0):
-			$AnimatedSprite2D.play("walking_up")
+			$AnimatedSprite2D.play("walking_north")
 		elif (motion.y == 0):
-			$AnimatedSprite2D.play("idle")
+			$AnimatedSprite2D.play("idle_south")
 			 
 			
 	velocity = motion.normalized() * MOTION_SPEED
