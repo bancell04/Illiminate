@@ -10,13 +10,21 @@ height = 38.0
 z_index = 5
 script = ExtResource("1_s027a")
 
-[node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+[node name="FullSprite" type="AnimatedSprite2D" parent="."]
 z_index = 5
 scale = Vector2(2.5, 2.5)
 sprite_frames = ExtResource("2_s027a")
-animation = &"idle_east"
+animation = &"legs_walking_east"
 autoplay = "idle_south"
-frame_progress = 0.155917
+frame_progress = 0.818284
+
+[node name="TorsoSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_s027a")
+animation = &"idle_east"
+
+[node name="LegsSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_s027a")
+animation = &"idle_west"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 5
