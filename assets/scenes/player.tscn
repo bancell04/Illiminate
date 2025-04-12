@@ -14,9 +14,10 @@ script = ExtResource("1_s027a")
 z_index = 5
 scale = Vector2(2.5, 2.5)
 sprite_frames = ExtResource("2_s027a")
-animation = &"idle_east"
+animation = &"armoed_walking_northwest"
 autoplay = "idle_south"
-frame_progress = 0.155917
+frame = 6
+frame_progress = 0.288012
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 5

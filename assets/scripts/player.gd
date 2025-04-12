@@ -19,51 +19,94 @@ func _physics_process(delta):
 	motion.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	motion.y /= 2
 	
+	
+	# DIRECTION PLAYER IS MOVING
+	var motionAngle
+	var motionAngleDeg = rad_to_deg(motion.angle())
+	if motionAngleDeg < 0:
+		motionAngleDeg += 360
+	print(motionAngleDeg)
+	if (motionAngleDeg > 337.5 || motionAngleDeg <= 22.5):
+		motionAngle = Direction.EAST
+	elif (motionAngleDeg > 22.5 && motionAngleDeg <= 67.5):
+		motionAngle = Direction.SOUTHEAST
+	elif (motionAngleDeg > 67.5 && motionAngleDeg <= 112.5):
+		motionAngle = Direction.SOUTH
+	elif (motionAngleDeg > 112.5 && motionAngleDeg <= 157.5):
+		motionAngle = Direction.SOUTHWEST
+	elif (motionAngleDeg > 157.5 && motionAngleDeg <= 202.5):
+		motionAngle = Direction.WEST
+	elif (motionAngleDeg > 202.5 && motionAngleDeg <= 247.5):
+		motionAngle = Direction.NORTHWEST
+	elif (motionAngleDeg > 247.5 && motionAngleDeg <= 292.5):
+		motionAngle = Direction.NORTH
+	elif (motionAngleDeg > 292.5 && motionAngleDeg <= 337.5):
+		motionAngle = Direction.NORTHEAST
+		
+		
 	# GET DIRECTION PLAYER IS FACING
-	var angle
+	var lookAngle
 	var angleDeg = rad_to_deg((get_global_mouse_position() - global_position).angle())
 	if angleDeg < 0:
 		angleDeg += 360
-	
 	if (angleDeg > 337.5 || angleDeg <= 22.5):
-		angle = Direction.EAST
+		lookAngle = Direction.EAST
 	elif (angleDeg > 22.5 && angleDeg <= 67.5):
-		angle = Direction.SOUTHEAST
+		lookAngle = Direction.SOUTHEAST
 	elif (angleDeg > 67.5 && angleDeg <= 112.5):
-		angle = Direction.SOUTH
+		lookAngle = Direction.SOUTH
 	elif (angleDeg > 112.5 && angleDeg <= 157.5):
-		angle = Direction.SOUTHWEST
+		lookAngle = Direction.SOUTHWEST
 	elif (angleDeg > 157.5 && angleDeg <= 202.5):
-		angle = Direction.WEST
+		lookAngle = Direction.WEST
 	elif (angleDeg > 202.5 && angleDeg <= 247.5):
-		angle = Direction.NORTHWEST
+		lookAngle = Direction.NORTHWEST
 	elif (angleDeg > 247.5 && angleDeg <= 292.5):
-		angle = Direction.NORTH
+		lookAngle = Direction.NORTH
 	elif (angleDeg > 292.5 && angleDeg <= 337.5):
-		angle = Direction.NORTHEAST
+		lookAngle = Direction.NORTHEAST
 		
-		
+	
+	var motionMultiplier = 1
 	var moving = motion.x != 0 || motion.y != 0
 	if moving:
-		match angle:
+		match lookAngle:
 			Direction.EAST:
 				$CharacterSprite.play("walking_east")
+				if motionAngle == Direction.WEST:
+					motionMultiplier = .7
+					print("WORKING")
 			Direction.SOUTHEAST:
 				$CharacterSprite.play("walking_southeast")
+				if motionAngle == Direction.NORTHWEST:
+					motionMultiplier = .7
 			Direction.SOUTH:
 				$CharacterSprite.play("walking_south")
+				if motionAngle == Direction.NORTH:
+					motionMultiplier = .7
 			Direction.SOUTHWEST:
 				$CharacterSprite.play("walking_southwest")
+				if motionAngle == Direction.NORTHEAST:
+					motionMultiplier = .7
 			Direction.WEST:
 				$CharacterSprite.play("walking_west")
+				if motionAngle == Direction.EAST:
+					motionMultiplier = .7
 			Direction.NORTHWEST:
 				$CharacterSprite.play("walking_northwest")
+				if motionAngle == Direction.SOUTHEAST:
+					motionMultiplier = .7
 			Direction.NORTH:
 				$CharacterSprite.play("walking_north")
+				if motionAngle == Direction.SOUTH:
+					motionMultiplier = .7
+				
 			Direction.NORTHEAST:
 				$CharacterSprite.play("walking_northeast")
+				if motionAngle == Direction.SOUTHWEST:
+					motionMultiplier = .7
 	else:
-		match angle:
+		match lookAngle:
 			Direction.EAST:
 				$CharacterSprite.play("idle_east")
 			Direction.SOUTHEAST:
@@ -81,6 +124,6 @@ func _physics_process(delta):
 			Direction.NORTHEAST:
 				$CharacterSprite.play("idle_northeast")
 			
-	velocity = motion.normalized() * MOTION_SPEED
+	velocity = motion.normalized() * MOTION_SPEED * motionMultiplier
 	
 	move_and_slide()
