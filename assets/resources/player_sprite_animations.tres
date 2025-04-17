@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=186 format=3 uid="uid://y8inp0gwjkrm"]
+[gd_resource type="SpriteFrames" load_steps=186 format=3 uid="uid://c680h4ksep7vx"]
 
 [ext_resource type="Texture2D" uid="uid://sj6njlsvmkv6" path="res://assets/sprites/spaceman/spaceman_idle_east.png" id="1_lebww"]
 [ext_resource type="Texture2D" uid="uid://b1f2crqse6jjv" path="res://assets/sprites/spaceman/spaceman_idle_north.png" id="2_avgnm"]

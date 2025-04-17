@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyhrhdg04wky6"]
 
 [ext_resource type="Script" uid="uid://w5hhl6g6comc" path="res://assets/scripts/player.gd" id="1_s027a"]
-[ext_resource type="SpriteFrames" uid="uid://y8inp0gwjkrm" path="res://assets/resources/player_sprite_animations.tres" id="2_s027a"]
+[ext_resource type="SpriteFrames" uid="uid://c680h4ksep7vx" path="res://assets/resources/player_sprite_animations.tres" id="2_s027a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s027a"]
 height = 38.0
