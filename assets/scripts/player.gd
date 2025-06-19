@@ -6,9 +6,9 @@ const MOTION_SPEED = 160 # Pixels/second.
 var lookDirection;
 var walkDirection;
 
-func _ready():
+func _ready():		
 	var weapon_instance = preload("res://assets/scenes/weapon.tscn").instantiate()
-	weapon_instance.get_child(0).get_script().player = self
+	weapon_instance.get_child(0).player = self
 	add_child(weapon_instance)
 	
 
@@ -23,7 +23,6 @@ func _physics_process(_delta):
 	var motionAngleDeg = rad_to_deg(motion.angle())
 	if motionAngleDeg < 0:
 		motionAngleDeg += 360
-	print(motionAngleDeg)
 	if (motionAngleDeg > 337.5 || motionAngleDeg <= 22.5):
 		walkDirection = Globals.Direction.EAST
 	elif (motionAngleDeg > 22.5 && motionAngleDeg <= 67.5):
@@ -72,7 +71,6 @@ func _physics_process(_delta):
 				$CharacterSprite.play("walking_east")
 				if walkDirection == Direction.WEST:
 					motionMultiplier = .7
-					print("WORKING")
 			Direction.SOUTHEAST:
 				$CharacterSprite.play("walking_southeast")
 				if walkDirection == Direction.NORTHWEST:

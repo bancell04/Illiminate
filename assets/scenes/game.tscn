@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://bseelxjwbsamr"]
+[gd_scene load_steps=4 format=4 uid="uid://bseelxjwbsamr"]
 
 [ext_resource type="TileSet" uid="uid://x7f8r1eq2btj" path="res://assets/resources/world_tileset.tres" id="1_5gf0t"]
 [ext_resource type="PackedScene" uid="uid://dyhrhdg04wky6" path="res://assets/scenes/player.tscn" id="2_dis88"]
 [ext_resource type="PackedScene" uid="uid://1n00ksjxawk3" path="res://assets/scenes/building1.tscn" id="3_cb5na"]
-[ext_resource type="PackedScene" uid="uid://cwrjeulwric56" path="res://assets/scenes/weapon.tscn" id="4_cb5na"]
 
 [node name="Game" type="Node2D"]
 
@@ -30,10 +29,6 @@ position = Vector2(-606, -10)
 [node name="Player" parent="." instance=ExtResource("2_dis88")]
 z_index = 1
 position = Vector2(77, 352)
-
-[node name="Weapon" parent="Player" instance=ExtResource("4_cb5na")]
-position = Vector2(-15.17, -5.55)
-scale = Vector2(0.1, 0.1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(11, -10)
