@@ -5,10 +5,14 @@ const MOTION_SPEED = 160 # Pixels/second.
 
 var lookDirection;
 var walkDirection;
+var armed = false;
+var spritePrefix = "";
+var weapon_instance;
 
 func _ready():		
-	var weapon_instance = preload("res://assets/scenes/weapon.tscn").instantiate()
+	weapon_instance = preload("res://assets/scenes/weapon.tscn").instantiate()
 	weapon_instance.get_child(0).player = self
+	weapon_instance.visible = false;
 	add_child(weapon_instance)
 	
 
@@ -17,6 +21,16 @@ func _physics_process(_delta):
 	motion.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	motion.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	motion.y /= 2
+	
+	# Armed logic
+	if Input.is_action_just_pressed("interact"):
+		self.armed = !self.armed
+		if self.armed:
+			weapon_instance.visible = true
+			self.spritePrefix = "armed_" 
+		else:
+			self.spritePrefix = "" 
+			weapon_instance.visible = false
 	
 	
 	# DIRECTION PLAYER IS MOVING
@@ -68,55 +82,55 @@ func _physics_process(_delta):
 	if moving:
 		match lookDirection:
 			Direction.EAST:
-				$CharacterSprite.play("walking_east")
+				$CharacterSprite.play(self.spritePrefix + "walking_east")
 				if walkDirection == Direction.WEST:
 					motionMultiplier = .7
 			Direction.SOUTHEAST:
-				$CharacterSprite.play("walking_southeast")
+				$CharacterSprite.play(self.spritePrefix + "walking_southeast")
 				if walkDirection == Direction.NORTHWEST:
 					motionMultiplier = .7
 			Direction.SOUTH:
-				$CharacterSprite.play("walking_south")
+				$CharacterSprite.play(self.spritePrefix + "walking_south")
 				if walkDirection == Direction.NORTH:
 					motionMultiplier = .7
 			Direction.SOUTHWEST:
-				$CharacterSprite.play("walking_southwest")
+				$CharacterSprite.play(self.spritePrefix + "walking_southwest")
 				if walkDirection == Direction.NORTHEAST:
 					motionMultiplier = .7
 			Direction.WEST:
-				$CharacterSprite.play("walking_west")
+				$CharacterSprite.play(self.spritePrefix + "walking_west")
 				if walkDirection == Direction.EAST:
 					motionMultiplier = .7
 			Direction.NORTHWEST:
-				$CharacterSprite.play("walking_northwest")
+				$CharacterSprite.play(self.spritePrefix + "walking_northwest")
 				if walkDirection == Direction.SOUTHEAST:
 					motionMultiplier = .7
 			Direction.NORTH:
-				$CharacterSprite.play("walking_north")
+				$CharacterSprite.play(self.spritePrefix + "walking_north")
 				if walkDirection == Direction.SOUTH:
 					motionMultiplier = .7
 			Direction.NORTHEAST:
-				$CharacterSprite.play("walking_northeast")
+				$CharacterSprite.play(self.spritePrefix + "walking_northeast")
 				if walkDirection == Direction.SOUTHWEST:
 					motionMultiplier = .7
 	else:
 		match lookDirection:
 			Direction.EAST:
-				$CharacterSprite.play("idle_east")
+				$CharacterSprite.play(self.spritePrefix + "idle_east")
 			Direction.SOUTHEAST:
-				$CharacterSprite.play("idle_southeast")
+				$CharacterSprite.play(self.spritePrefix + "idle_southeast")
 			Direction.SOUTH:
-				$CharacterSprite.play("idle_south")
+				$CharacterSprite.play(self.spritePrefix + "idle_south")
 			Direction.SOUTHWEST:
-				$CharacterSprite.play("idle_southwest")
+				$CharacterSprite.play(self.spritePrefix + "idle_southwest")
 			Direction.WEST:
-				$CharacterSprite.play("idle_west")
+				$CharacterSprite.play(self.spritePrefix + "idle_west")
 			Direction.NORTHWEST:
-				$CharacterSprite.play("idle_northwest")
+				$CharacterSprite.play(self.spritePrefix + "idle_northwest")
 			Direction.NORTH:
-				$CharacterSprite.play("idle_north")
+				$CharacterSprite.play(self.spritePrefix + "idle_north")
 			Direction.NORTHEAST:
-				$CharacterSprite.play("idle_northeast")
+				$CharacterSprite.play(self.spritePrefix + "idle_northeast")
 			
 	velocity = motion.normalized() * MOTION_SPEED * motionMultiplier
 	
